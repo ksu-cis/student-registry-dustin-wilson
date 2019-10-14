@@ -21,14 +21,21 @@ namespace StudentRegister
     /// </summary>
     public partial class MainWindow : Window
     {
-        List<Student> students;
+        ObservableCollection<Student> students;
 
         public MainWindow()
         {
             InitializeComponent();
-            students = new List<Student>();
+            students = new ObservableCollection<Student>();
             students.Add(new Student("Jack", "Nimble"));
             students.Add(new Student("Mary", "Contrary"));
+            StudentList.ItemsSource = students;
+            SelectedStudent.Content = students;
+        }
+
+        private void AddCourse(object sender, RoutedEventArgs e)
+        {
+            students[1].CourseComplete("CIS 400", 3, Grade.A, "Fall 2019");
         }
     }
 }
